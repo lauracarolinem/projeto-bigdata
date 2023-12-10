@@ -23,11 +23,23 @@ def mostrar_filmes(genero):
    
     for filme in filmes:
         titulos = filme['title']
+        plot = filme.get('plot', 'Plot não disponível')[:100] + "..."
+        
+        put_html(f'''
+            <div style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd;">
+                <div style="display: flex; align-items: center;">
+                    <div style="flex: 2; padding-left: 10px;">
+                        <p>{plot}</p>
+                    </div>
+                </div>
+            </div>
+        ''')
         put_buttons([titulos], onclick=lambda titulos=titulos: detalhes_filme(titulos))
 
 
 def detalhes_filme(filme):
     clear()
+
     resultado = colecao.find_one({'title': filme})
     # nome = resultado.get('name', 'Nome não disponível')
     nome = resultado.get('title', 'Nome não disponível')
