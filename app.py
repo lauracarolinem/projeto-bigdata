@@ -24,8 +24,6 @@ def mostrar_filmes(genero):
     for filme in filmes:
         titulos = filme['title']
         put_buttons([titulos], onclick=lambda titulos=titulos: detalhes_filme(titulos))
-        
-
 
 
 def detalhes_filme(filme):
@@ -37,12 +35,14 @@ def detalhes_filme(filme):
     diretores = resultado.get('directors', [])
     ano = resultado.get('year', 'Ano não disponível')
     poster = resultado.get('poster', 'Poster não disponível')
+    plot = resultado.get('plot', 'Plot não disponível')
 
     
     put_text(f'Nome: {nome}')
     put_text(f'Ano: {ano}')
     put_text(f'Generos: {generos}')
     put_text(f'Diretores: {diretores}')
+    put_text(f'Plot: {plot}')
     put_image(poster)
 
 
